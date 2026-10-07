@@ -149,3 +149,16 @@ class Player:
         """한 축의 반대 방향 키가 동시에 눌리면 입력을 상쇄한다."""
 
         return int(positive_pressed) - int(negative_pressed)
+
+    def _read_direction(self, keys: pygame.key.ScancodeWrapper) -> pygame.Vector2:
+        """방향키 입력을 읽고 유효한 좌우 방향을 기억한다."""
+
+        horizontal = self._axis(keys[pygame.K_RIGHT], keys[pygame.K_LEFT])
+        vertical = self._axis(keys[pygame.K_DOWN], keys[pygame.K_UP])
+
+        if horizontal < 0:
+            self.facing = Facing.LEFT
+        elif horizontal > 0:
+            self.facing = Facing.RIGHT
+
+        return pygame.Vector2(horizontal, vertical)
