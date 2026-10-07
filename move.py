@@ -118,3 +118,9 @@ class Animation:
         while self.elapsed >= self.frame_duration:
             self.elapsed -= self.frame_duration
             self.frame_index = (self.frame_index + 1) % len(self.frames)
+
+    @property
+    def image(self) -> pygame.Surface:
+        """현재 화면에 그릴 프레임을 반환한다."""
+
+        return self.frames[self.frame_index]
