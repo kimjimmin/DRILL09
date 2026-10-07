@@ -57,3 +57,13 @@ ANIMATION_SPECS = {
     (PlayerState.RUN, Facing.RIGHT): AnimationSpec(row=2),
     (PlayerState.RUN, Facing.LEFT): AnimationSpec(row=3),
 }
+
+
+def load_image(path: Path, *, use_alpha: bool = True) -> pygame.Surface:
+    """이미지를 불러오고 화면 출력에 적합한 픽셀 형식으로 변환한다."""
+
+    if not path.is_file():
+        raise FileNotFoundError(f"이미지 파일을 찾을 수 없습니다: {path}")
+
+    image = pygame.image.load(path)
+    return image.convert_alpha() if use_alpha else image.convert()
