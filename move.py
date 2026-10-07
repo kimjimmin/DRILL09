@@ -283,3 +283,14 @@ class Game:
             self._handle_events()
             self._update(delta_time)
             self._render()
+
+
+def main() -> int:
+    """Pygame을 초기화하고 게임을 실행한 뒤 자원을 정리한다."""
+
+    pygame.init()
+    try:
+        Game().run()
+    finally:
+        pygame.quit()
+    return 0
