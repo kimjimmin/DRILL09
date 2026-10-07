@@ -260,3 +260,9 @@ class Game:
                 self.running = False
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 self.running = False
+
+    def _update(self, delta_time: float) -> None:
+        """현재 키 상태로 플레이어를 갱신한다."""
+
+        keys = pygame.key.get_pressed()
+        self.player.update(keys, delta_time, self.screen.get_rect())
