@@ -279,7 +279,7 @@ class Game:
         """종료 요청 전까지 입력, 갱신, 렌더링을 반복한다."""
 
         while self.running:
-            delta_time = self.clock.tick(TARGET_FPS) / 1000.0
+            delta_time = min(self.clock.tick(TARGET_FPS) / 1000.0, MAX_DELTA_TIME)
             self._handle_events()
             self._update(delta_time)
             self._render()
