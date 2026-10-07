@@ -291,6 +291,9 @@ def main() -> int:
     pygame.init()
     try:
         Game().run()
+    except (FileNotFoundError, ValueError, pygame.error) as error:
+        print(f"게임 실행 실패: {error}", file=sys.stderr)
+        return 1
     finally:
         pygame.quit()
     return 0
