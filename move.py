@@ -236,3 +236,18 @@ def build_animations(
         key: Animation(slice_animation_frames(sheet, spec), spec.fps)
         for key, spec in ANIMATION_SPECS.items()
     }
+
+
+class Game:
+    """게임 창, 리소스, 루프와 플레이어를 관리한다."""
+
+    def __init__(self) -> None:
+        self.screen = pygame.display.set_mode(SCREEN_SIZE)
+        pygame.display.set_caption(WINDOW_TITLE)
+        self.clock = pygame.time.Clock()
+        self.running = True
+
+        self.background = load_image(BACKGROUND_PATH, use_alpha=False)
+        self.sprite_sheet = load_image(SPRITE_SHEET_PATH)
+        self.animations = build_animations(self.sprite_sheet)
+        self.player = Player(self.animations, self.screen.get_rect().center)
