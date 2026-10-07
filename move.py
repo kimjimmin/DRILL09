@@ -67,3 +67,25 @@ def load_image(path: Path, *, use_alpha: bool = True) -> pygame.Surface:
 
     image = pygame.image.load(path)
     return image.convert_alpha() if use_alpha else image.convert()
+
+
+def slice_animation_frames(
+    sheet: pygame.Surface, spec: AnimationSpec
+) -> list[pygame.Surface]:
+    """지정한 행에서 100×100 크기의 프레임들을 복사한다."""
+
+    frames: list[pygame.Surface] = []
+    sheet_bounds = sheet.get_rect()
+
+    for column in range(spec.frame_count):
+        frame_rect = pygame.Rect(
+            SHEET_MARGIN + column * FRAME_WIDTH,
+            SHEET_MARGIN + spec.row * FRAME_HEIGHT,
+            FRAME_WIDTH,
+            FRAME_HEIGHT,
+        )
+        if not sheet_bounds.contains(frame_rect):
+            raise ValueError(f"스프라이트 범위를 벗어난 프레임입니다: {frame_rect}")
+        frames.append(sheet.subsurface(frame_rect).copy())
+
+    return frames
