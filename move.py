@@ -220,3 +220,8 @@ class Player:
         return self.animation.image.get_rect(
             topleft=(round(self.position.x), round(self.position.y))
         )
+
+    def draw(self, surface: pygame.Surface) -> None:
+        """현재 애니메이션 프레임을 지정한 화면에 그린다."""
+
+        surface.blit(self.animation.image, self.rect)
