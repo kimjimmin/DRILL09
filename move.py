@@ -104,3 +104,9 @@ class Animation:
         self.frame_duration = 1.0 / fps
         self.frame_index = 0
         self.elapsed = 0.0
+
+    def reset(self) -> None:
+        """애니메이션을 첫 프레임부터 다시 시작한다."""
+
+        self.frame_index = 0
+        self.elapsed = 0.0
