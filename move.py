@@ -89,3 +89,18 @@ def slice_animation_frames(
         frames.append(sheet.subsurface(frame_rect).copy())
 
     return frames
+
+
+class Animation:
+    """경과 시간을 사용해 여러 이미지를 반복 재생한다."""
+
+    def __init__(self, frames: list[pygame.Surface], fps: float) -> None:
+        if not frames:
+            raise ValueError("애니메이션에는 한 개 이상의 프레임이 필요합니다.")
+        if fps <= 0:
+            raise ValueError("애니메이션 FPS는 0보다 커야 합니다.")
+
+        self.frames = frames
+        self.frame_duration = 1.0 / fps
+        self.frame_index = 0
+        self.elapsed = 0.0
