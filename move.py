@@ -143,3 +143,9 @@ class Player:
 
         start_rect = self.animation.image.get_rect(center=start_center)
         self.position = pygame.Vector2(start_rect.topleft)
+
+    @staticmethod
+    def _axis(positive_pressed: bool, negative_pressed: bool) -> int:
+        """한 축의 반대 방향 키가 동시에 눌리면 입력을 상쇄한다."""
+
+        return int(positive_pressed) - int(negative_pressed)
