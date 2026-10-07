@@ -266,3 +266,10 @@ class Game:
 
         keys = pygame.key.get_pressed()
         self.player.update(keys, delta_time, self.screen.get_rect())
+
+    def _render(self) -> None:
+        """배경과 캐릭터를 순서대로 그리고 화면을 갱신한다."""
+
+        self.screen.blit(self.background, (0, 0))
+        self.player.draw(self.screen)
+        pygame.display.flip()
