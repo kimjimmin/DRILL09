@@ -124,3 +124,22 @@ class Animation:
         """현재 화면에 그릴 프레임을 반환한다."""
 
         return self.frames[self.frame_index]
+
+
+class Player:
+    """입력, 이동, 방향 기억과 애니메이션 상태를 관리한다."""
+
+    def __init__(
+        self,
+        animations: dict[tuple[PlayerState, Facing], Animation],
+        start_center: tuple[int, int],
+    ) -> None:
+        self.animations = animations
+        self.state = PlayerState.IDLE
+        self.facing = Facing.RIGHT
+        self.speed = MOVE_SPEED
+        self.animation_key = (self.state, self.facing)
+        self.animation = self.animations[self.animation_key]
+
+        start_rect = self.animation.image.get_rect(center=start_center)
+        self.position = pygame.Vector2(start_rect.topleft)
