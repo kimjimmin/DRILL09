@@ -251,3 +251,12 @@ class Game:
         self.sprite_sheet = load_image(SPRITE_SHEET_PATH)
         self.animations = build_animations(self.sprite_sheet)
         self.player = Player(self.animations, self.screen.get_rect().center)
+
+    def _handle_events(self) -> None:
+        """창 닫기 또는 ESC 입력을 받으면 게임 루프를 종료한다."""
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                self.running = False
