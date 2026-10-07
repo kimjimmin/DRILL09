@@ -225,3 +225,14 @@ class Player:
         """현재 애니메이션 프레임을 지정한 화면에 그린다."""
 
         surface.blit(self.animation.image, self.rect)
+
+
+def build_animations(
+    sheet: pygame.Surface,
+) -> dict[tuple[PlayerState, Facing], Animation]:
+    """기획서의 네 상태에 해당하는 애니메이션 객체를 만든다."""
+
+    return {
+        key: Animation(slice_animation_frames(sheet, spec), spec.fps)
+        for key, spec in ANIMATION_SPECS.items()
+    }
