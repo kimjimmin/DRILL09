@@ -26,3 +26,10 @@ SPRITE_COLUMNS = 8
 FRAME_WIDTH = 100
 FRAME_HEIGHT = 100
 SHEET_MARGIN = 1
+
+
+class Facing(Enum):
+    """캐릭터가 마지막으로 바라본 수평 방향."""
+
+    LEFT = auto()
+    RIGHT = auto()
