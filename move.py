@@ -162,3 +162,11 @@ class Player:
             self.facing = Facing.RIGHT
 
         return pygame.Vector2(horizontal, vertical)
+
+    @staticmethod
+    def _normalized(direction: pygame.Vector2) -> pygame.Vector2:
+        """대각선 입력도 한 축 이동과 같은 속도가 되도록 보정한다."""
+
+        if direction.length_squared() == 0:
+            return direction
+        return direction.normalize()
