@@ -198,3 +198,17 @@ class Player:
 
         self.position += direction * self.speed * delta_time
         self._clamp_position(bounds)
+
+    def update(
+        self,
+        keys: pygame.key.ScancodeWrapper,
+        delta_time: float,
+        bounds: pygame.Rect,
+    ) -> None:
+        """한 프레임의 입력, 이동, 상태, 애니메이션을 갱신한다."""
+
+        raw_direction = self._read_direction(keys)
+        moving = raw_direction.length_squared() > 0
+        self._select_animation(moving)
+        self._move(self._normalized(raw_direction), delta_time, bounds)
+        self.animation.update(delta_time)
