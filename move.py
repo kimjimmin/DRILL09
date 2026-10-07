@@ -110,3 +110,11 @@ class Animation:
 
         self.frame_index = 0
         self.elapsed = 0.0
+
+    def update(self, delta_time: float) -> None:
+        """누적된 시간만큼 프레임을 진행하고 마지막에서 반복한다."""
+
+        self.elapsed += delta_time
+        while self.elapsed >= self.frame_duration:
+            self.elapsed -= self.frame_duration
+            self.frame_index = (self.frame_index + 1) % len(self.frames)
