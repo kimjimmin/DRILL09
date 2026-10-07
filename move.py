@@ -40,3 +40,12 @@ class PlayerState(Enum):
 
     IDLE = auto()
     RUN = auto()
+
+
+@dataclass(frozen=True)
+class AnimationSpec:
+    """스프라이트 시트에서 애니메이션 한 행을 찾기 위한 정보."""
+
+    row: int
+    frame_count: int = SPRITE_COLUMNS
+    fps: float = ANIMATION_FPS
