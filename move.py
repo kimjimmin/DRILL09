@@ -170,3 +170,15 @@ class Player:
         if direction.length_squared() == 0:
             return direction
         return direction.normalize()
+
+    def _select_animation(self, moving: bool) -> None:
+        """이동 여부와 마지막 방향에 맞는 애니메이션으로 전환한다."""
+
+        self.state = PlayerState.RUN if moving else PlayerState.IDLE
+        next_key = (self.state, self.facing)
+        if next_key == self.animation_key:
+            return
+
+        self.animation_key = next_key
+        self.animation = self.animations[next_key]
+        self.animation.reset()
