@@ -33,3 +33,10 @@ class Facing(Enum):
 
     LEFT = auto()
     RIGHT = auto()
+
+
+class PlayerState(Enum):
+    """입력에 따라 전환되는 캐릭터 동작 상태."""
+
+    IDLE = auto()
+    RUN = auto()
