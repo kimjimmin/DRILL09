@@ -8,3 +8,8 @@ from enum import Enum, auto
 from pathlib import Path
 
 import pygame
+
+
+BASE_DIR = Path(__file__).resolve().parent
+BACKGROUND_PATH = BASE_DIR / "TUK_GROUND.png"
+SPRITE_SHEET_PATH = BASE_DIR / "animation_sheet.png"
