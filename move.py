@@ -212,3 +212,11 @@ class Player:
         self._select_animation(moving)
         self._move(self._normalized(raw_direction), delta_time, bounds)
         self.animation.update(delta_time)
+
+    @property
+    def rect(self) -> pygame.Rect:
+        """현재 부동소수점 위치를 화면 출력용 사각형으로 변환한다."""
+
+        return self.animation.image.get_rect(
+            topleft=(round(self.position.x), round(self.position.y))
+        )
