@@ -190,3 +190,11 @@ class Player:
         max_y = max(bounds.top, bounds.bottom - self.animation.image.get_height())
         self.position.x = min(max(self.position.x, bounds.left), max_x)
         self.position.y = min(max(self.position.y, bounds.top), max_y)
+
+    def _move(
+        self, direction: pygame.Vector2, delta_time: float, bounds: pygame.Rect
+    ) -> None:
+        """경과 시간에 비례해 이동한 뒤 위치를 화면 안으로 제한한다."""
+
+        self.position += direction * self.speed * delta_time
+        self._clamp_position(bounds)
