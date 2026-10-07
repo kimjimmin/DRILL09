@@ -49,3 +49,11 @@ class AnimationSpec:
     row: int
     frame_count: int = SPRITE_COLUMNS
     fps: float = ANIMATION_FPS
+
+
+ANIMATION_SPECS = {
+    (PlayerState.IDLE, Facing.RIGHT): AnimationSpec(row=0),
+    (PlayerState.IDLE, Facing.LEFT): AnimationSpec(row=1),
+    (PlayerState.RUN, Facing.RIGHT): AnimationSpec(row=2),
+    (PlayerState.RUN, Facing.LEFT): AnimationSpec(row=3),
+}
