@@ -182,3 +182,11 @@ class Player:
         self.animation_key = next_key
         self.animation = self.animations[next_key]
         self.animation.reset()
+
+    def _clamp_position(self, bounds: pygame.Rect) -> None:
+        """캐릭터의 프레임 전체가 화면 경계 안에 머물게 한다."""
+
+        max_x = max(bounds.left, bounds.right - self.animation.image.get_width())
+        max_y = max(bounds.top, bounds.bottom - self.animation.image.get_height())
+        self.position.x = min(max(self.position.x, bounds.left), max_x)
+        self.position.y = min(max(self.position.y, bounds.top), max_y)
